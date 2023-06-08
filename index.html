@@ -6,8 +6,8 @@
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    media="screen,projection" />
+  <link type="text/css" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection" />
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -138,6 +138,45 @@
     .container {
       padding-top: 20px;
     }
+
+    .toggle-button-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .toggle-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #fff !important;
+      background-color: var(--filter-button-color) !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+      padding: 6px 8px;
+      transition: background-color 0.3s;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-radius: 5px;
+      opacity: 0.3;
+    }
+
+    .toggle-button.grey {
+      background-color: var(--filter-button-color-inactive) !important;
+    }
+
+    .toggle-button.green {
+      background-color: var(--filter-button-color-active) !important;
+      opacity: 1;
+    }
+
+    .toggle-button i {
+      margin-left: 5px;
+    }
+
+    .toggle-button .material-icons {
+      vertical-align: middle;
+    }
   </style>
 </head>
 
@@ -151,6 +190,11 @@
   </header>
 
   <div class="container">
+    <div class="toggle-button-container">
+      <a class="waves-effect waves-light btn-small toggle-button grey" id="toggle-button">
+        <i class="material-icons left">data_usage</i>Data
+      </a>
+    </div>
     <div class="filter-container">
       <div class="filter-category">
         <p class="filter-title" style="color: #fff;">Consensus:</p>
@@ -204,9 +248,9 @@
   <footer class="page-footer">
     <div class="container">
       <div class="center-align">
-        <a href="https://github.com/glasgowm148/Themis/info/name.md" class="waves-effect waves-light btn" target="_blank"
+        <a href="https://github.com/glasgowm148/Themis" class="waves-effect waves-light btn" target="_blank"
           style="color: #bf77e5; background-color: #fff;">
-          <i class="material-icons left">cloud</i>Contribute on GitHub
+          <i class="material-icons left">cloud</i>Contribute
         </a>
       </div>
     </div>
@@ -216,9 +260,7 @@
     fetch('data.json')
       .then(response => response.json())
       .then(chartData => {
-        const consensusButtonsContainer = document.getElementById('consensus-buttons');
-        const platformButtonsContainer = document.getElementById('platform-buttons');
-        const featuresButtonsContainer = document.getElementById('features-buttons');
+        const toggleButton = document.getElementById('toggle-button');
         const chartsContainer = document.getElementById('charts-container');
 
         const colors = [
@@ -233,23 +275,7 @@
           'rgba(255, 206, 86, 0.6)'
         ];
 
-        const consensusTags = new Set();
-        const platformTags = new Set();
-        const featuresTags = new Set();
-
-        chartData.forEach(chart => {
-          if (chart.tags) {
-            chart.tags.forEach(tag => {
-              if (tag.startsWith('Consensus:')) {
-                consensusTags.add(tag.replace('Consensus:', ''));
-              } else if (tag.startsWith('Platform:')) {
-                platformTags.add(tag.replace('Platform:', ''));
-              } else if (tag.startsWith('Features:')) {
-                featuresTags.add(tag.replace('Features:', ''));
-              }
-            });
-          }
-        });
+        let useCommunityData = false;
 
         const createFilterButtons = (container, tags) => {
           tags.forEach(tag => {
@@ -260,10 +286,6 @@
             container.appendChild(button);
           });
         };
-
-        createFilterButtons(consensusButtonsContainer, consensusTags);
-        createFilterButtons(platformButtonsContainer, platformTags);
-        createFilterButtons(featuresButtonsContainer, featuresTags);
 
         const filterCharts = () => {
           const activeFilters = Array.from(document.querySelectorAll('.filter-button.green'))
@@ -296,15 +318,18 @@
             chartContent.appendChild(canvas);
 
             const ctx = canvas.getContext('2d');
+            const chartData = useCommunityData ? Object.values(chart.community) : chart.data;
+
+
             const myChart = new Chart(ctx, {
               type: 'pie',
               data: {
                 labels: chart.labels,
                 datasets: [{
                   label: chart.name,
-                  data: chart.data,
-                  backgroundColor: colors.slice(0, chart.data.length),
-                  borderColor: colors.slice(0, chart.data.length),
+                  data: chartData,
+                  backgroundColor: colors.slice(0, chartData.length),
+                  borderColor: colors.slice(0, chartData.length),
                   borderWidth: 1
                 }]
               },
@@ -338,7 +363,7 @@
 
             const readMore = document.createElement('a');
             readMore.classList.add('read-more');
-            readMore.href = `https://github.com/glasgowm148/Themis/info/${chart.name}.md`;
+            readMore.href = `https://github.com/glasgowm148/Themis/blob/main/info/${chart.name}.MD`;
             readMore.target = '_blank';
             readMore.innerHTML = `Read More <i class="material-icons right">arrow_forward</i>`;
             chartContainer.appendChild(readMore);
@@ -357,8 +382,19 @@
           });
         });
 
+        toggleButton.addEventListener('click', () => {
+          useCommunityData = !useCommunityData;
+          toggleButton.innerHTML = `<i class="material-icons left">${useCommunityData ? 'data_usage' : 'people'}</i>${useCommunityData ? 'Data' : 'Community'}`;
+          filterCharts();
+        });
+
+        createFilterButtons(document.getElementById('consensus-buttons'), ['PoW', 'PoS', 'Other']);
+        createFilterButtons(document.getElementById('platform-buttons'), ['Layer 1', 'ERC-20', 'BTC-Fork']);
+        createFilterButtons(document.getElementById('features-buttons'), ['Smart Contracts', 'Privacy Coin', 'Privacy Features', 'Tokens']);
+
         filterCharts();
       });
+
   </script>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

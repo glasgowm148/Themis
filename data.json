@@ -3,189 +3,280 @@
         "name": "BTC",
         "labels": ["Community", "Satoshi"],
         "data": [95, 5],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1200px-Bitcoin.svg.png",
-        "tags": ["PoW", "Layer 1", "Privacy Features"]
+        "tags": ["PoW", "Layer 1", "Privacy Features"],
+        "community": {
+            "Public": 100,
+            "Insiders": 0
+        }
     },
     {
         "name": "RVN",
         "labels": ["Community"],
         "data": [100],
-        "logo": "https://www.google.com/url?sa=i&url=https%3A%2F%2Ficonduck.com%2Ficons%2F69807%2Fquestion-mark-circled&psig=AOvVaw3TP-K88Stg6dm_9gMkwdve&ust=1686307913268000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPiEtNPAs_8CFQAAAAAdAAAAABA_",
-        "tags": ["PoW", "BTC-Fork", "Tokens"]
+        "tags": ["PoW", "BTC-Fork", "Tokens"],
+        "community": {
+            "Public": 100,
+            "Insiders": 0
+        }
     },
     {
         "name": "XMR",
         "labels": ["Community"],
         "data": [100],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Monero_logo.svg/1200px-Monero_logo.svg.png",
-        "tags": ["PoW", "Privacy Coin"]
+        "tags": ["PoW", "Privacy Coin", "Layer 1"],
+        "community": {
+            "Public": 100,
+            "Insiders": 0
+        }
     },
     {
         "name": "LTC",
         "labels": ["Community"],
         "data": [100],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Litecoin.svg/1200px-Litecoin.svg.png",
-        "tags": ["PoW", "BTC-Fork"]
+        "tags": ["PoW", "BTC-Fork", "Layer 1"],
+        "community": {
+            "Public": 100,
+            "Insiders": 0
+        }
     },
     {
         "name": "BCH",
         "labels": ["Community"],
         "data": [100],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Bitcoin_Cash_logo.svg/1200px-Bitcoin_Cash_logo.svg.png",
-        "tags": ["PoW", "BTC-Fork", "Tokens"]
+        "tags": ["PoW", "BTC-Fork", "Tokens", "Layer 1"],
+        "community": {
+            "Public": 100,
+            "Insiders": 0
+        }
     },
     {
         "name": "ERG",
         "labels": ["Community", "Ergo Foundation"],
         "data": [95.57, 4.43],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Ergo_logo.svg/1200px-Ergo_logo.svg.png",
-        "tags": ["PoW", "Smart Contracts", "Layer 1", "Privacy Features", "Tokens"]
+        "tags": ["PoW", "Smart Contracts", "Layer 1", "Privacy Features", "Tokens"],
+        "community": {
+            "Public": 95.57,
+            "Insiders": 4.43
+        }
     },
     {
         "name": "NANO",
         "labels": ["Community", "Nano Foundation"],
         "data": [95, 5],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Nano_logo.svg/1200px-Nano_logo.svg.png"
+        "tags": ["Layer 1"],
+        "community": {
+            "Public": 95,
+            "Insiders": 5
+        }
     },
     {
         "name": "ZEC",
         "labels": ["Community", "Zcash Foundation"],
         "data": [90, 10],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Zcash_logo.svg/1200px-Zcash_logo.svg.png",
-        "tags": ["Privacy Coin"]
+        "tags": ["Privacy Coin", "Layer 1"],
+        "community": {
+            "Public": 90,
+            "Insiders": 10
+        }
     },
     {
         "name": "CRO",
         "labels": ["Community", "Crypto.com"],
         "data": [85, 15],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/CRO_%28Crypto.com%29_logo.svg/1200px-CRO_%28Crypto.com%29_logo.svg.png"
+        "tags": ["Other"],
+        "community": {
+            "Public": 85,
+            "Insiders": 15
+        }
     },
     {
         "name": "ADA",
         "labels": ["ICO", "Team", "Staking Rewards"],
         "data": [57.60, 11.50, 30.90],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Cardano_logo.svg/1200px-Cardano_logo.svg.png",
-        "tags": ["PoS", "Smart Contracts", "Layer 1", "Tokens"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1", "Tokens"],
+        "community": {
+            "Public": 88.5,
+            "Insiders": 11.5
+        }
     },
     {
         "name": "ATOM",
         "labels": ["Community"],
         "data": [87, 13],
-        "tags": ["PoS", "Smart Contracts", "Layer 1"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 87,
+            "Insiders": 13
+        }
     },
     {
         "name": "UNI",
         "labels": ["Community", "Team", "Investors", "Advisors"],
         "data": [60, 21.27, 18.04, 0.69],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Uniswap_logo.svg/1200px-Uniswap_logo.svg.png",
-        "tags": ["ERC-20"]
+        "tags": ["ERC-20"],
+        "community": {
+            "Public": 60,
+            "Insiders": 40.31
+        }
     },
     {
         "name": "XRP",
         "labels": ["Community", "Ripple"],
         "data": [55, 45],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Ripple_logo.svg/1200px-Ripple_logo.svg.png",
-        "tags": ["Smart Contracts", "Layer 1"]
+        "tags": ["Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 55,
+            "Insiders": 45
+        }
     },
     {
         "name": "ALGO",
         "labels": ["Community", "Algorand Foundation"],
         "data": [50, 50],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Algorand_logo.svg/1200px-Algorand_logo.svg.png",
-        "tags": ["PoS", "Smart Contracts", "Layer 1"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 50,
+            "Insiders": 50
+        }
     },
     {
         "name": "BSC",
         "labels": ["Community", "Binance"],
         "data": [50, 50],
-        "tags": ["Smart Contracts", "Layer 1"]
+        "tags": ["Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 50,
+            "Insiders": 50
+        }
     },
     {
         "name": "TRX",
         "labels": ["Community", "Insiders"],
         "data": [40, 60],
-        "tags": ["PoS", "Smart Contracts"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 40,
+            "Insiders": 60
+        }
     },
     {
         "name": "SOL",
         "labels": ["Seed Sale", "Founding Sale", "Validator Sale", "Strategic Sale", "Public Auction Sale", "Team"],
         "data": [15.86, 12.63, 5.07, 1.84, 1.60, 12.50],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Solana_logo.svg/1200px-Solana_logo.svg.png",
-        "tags": ["PoS", "Smart Contracts"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 15.86,
+            "Insiders": 43.44
+        }
     },
     {
         "name": "AVAX",
         "labels": ["Community"],
         "data": [39],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Avalanche_logo.svg/1200px-Avalanche_logo.svg.png",
-        "tags": ["PoS", "Smart Contracts"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 39,
+            "Insiders": 61
+        }
     },
     {
         "name": "ETH",
         "labels": ["Ethereum Crowdsale", "Ethereum Foundation", "Early Contributors & Others"],
         "data": [83.33, 16.68],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ethereum_logo.svg/1200px-Ethereum_logo.svg.png",
-        "tags": ["PoW", "Smart Contracts", "Privacy Features"]
+        "tags": ["PoW", "Smart Contracts", "Privacy Features", "Layer 1"],
+        "community": {
+            "Public": 83.33,
+            "Insiders": 16.68
+        }
     },
     {
         "name": "DOT",
         "labels": ["Community", "Foundation", "Insiders"],
         "data": [25, 42, 33],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Polkadot_logo.svg/1200px-Polkadot_logo.svg.png",
-        "tags": ["PoS", "Smart Contracts"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 25,
+            "Insiders": 75
+        }
     },
     {
         "name": "MATIC",
         "labels": ["Community", "Polygon Foundation"],
         "data": [40, 60],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Matic-network-logo.svg/1200px-Matic-network-logo.svg.png",
-        "tags": ["PoS", "Smart Contracts"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 40,
+            "Insiders": 60
+        }
     },
     {
         "name": "LUNA",
         "labels": ["Community", "Insiders"],
         "data": [0, 100],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Terra_%28blockchain%29_logo.svg/1200px-Terra_%28blockchain%29_logo.svg.png",
-        "tags": ["PoS", "Smart Contracts"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 0,
+            "Insiders": 100
+        }
     },
     {
         "name": "LINK",
         "labels": ["Community", "Chainlink team"],
         "data": [65, 35],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chainlink_logo.svg/1200px-Chainlink_logo.svg.png",
-        "tags": ["Smart Contracts"]
+        "tags": ["Smart Contracts", "ERC-20"],
+        "community": {
+            "Public": 65,
+            "Insiders": 35
+        }
     },
     {
         "name": "VET",
         "labels": ["Community", "VeChain Foundation"],
         "data": [75, 25],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Vechain_logo.svg/1200px-Vechain_logo.svg.png",
-        "tags": ["Other"]
+        "tags": ["Other", "Layer 1"],
+        "community": {
+            "Public": 75,
+            "Insiders": 25
+        }
     },
     {
         "name": "DOGE",
         "labels": ["Community"],
         "data": [100],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Dogecoin_Logo.svg/1200px-Dogecoin_Logo.svg.png",
-        "tags": ["PoW"]
+        "tags": ["PoW", "Layer 1", "BTC-Fork"],
+        "community": {
+            "Public": 100,
+            "Insiders": 0
+        }
     },
     {
         "name": "XLM",
         "labels": ["Community", "Stellar Development Foundation"],
         "data": [80, 20],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Stellar_Symbol.svg/1200px-Stellar_Symbol.svg.png"
+        "tags": ["Other", "Layer 1"],
+        "community": {
+            "Public": 80,
+            "Insiders": 20
+        }
     },
     {
         "name": "FIL",
         "labels": ["Community", "Protocol Labs"],
         "data": [70, 30],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Filecoin_logo.svg/1200px-Filecoin_logo.svg.png"
+        "tags": ["Other", "Layer 1"],
+        "community": {
+            "Public": 70,
+            "Insiders": 30
+        }
     },
     {
         "name": "XTZ",
         "labels": ["Community", "Tezos Foundation"],
         "data": [80, 20],
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Tezos_logo.svg/1200px-Tezos_logo.svg.png",
-        "tags": ["PoS", "Smart Contracts"]
+        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "community": {
+            "Public": 80,
+            "Insiders": 20
+        }
     }
 ]
