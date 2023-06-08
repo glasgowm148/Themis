@@ -104,7 +104,7 @@
         "name": "TRX",
         "labels": ["Community", "Insiders"],
         "data": [40, 60],
-        "tags": ["dPoS", "Smart Contracts"]
+        "tags": ["PoS", "Smart Contracts"]
     },
     {
         "name": "SOL",
@@ -160,7 +160,7 @@
         "labels": ["Community", "VeChain Foundation"],
         "data": [75, 25],
         "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Vechain_logo.svg/1200px-Vechain_logo.svg.png",
-        "tags": ["PoA"]
+        "tags": ["Other"]
     },
     {
         "name": "DOGE",
