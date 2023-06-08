@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Themis: Cryptocurrency Distribution</title>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    media="screen,projection" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --primary-color: #230c26;
+      --secondary-color: #3c3b4d;
+      --filter-button-color: #b0b2c9;
+      --filter-button-color-active: #13943c;
+      --filter-button-color-inactive: #777;
+      --header-footer-color: var(--primary-color);
+    }
+
+    body {
+      background-color: #2a2837 !important;
+      color: #fff !important;
+      font-family: Arial, sans-serif;
+    }
+
+    nav {
+      background-color: #230c26 !important;
+    }
+
+    .charts-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .chart-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: var(--secondary-color) !important;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .chart-container canvas {
+      max-width: 100%;
+    }
+
+    .chart-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .chart-logo {
+      width: 20px;
+      height: 20px;
+      margin-top: 10px;
+    }
+
+    .filter-container {
+      padding: 20px;
+      background-color: #484769;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .filter-category {
+      margin-bottom: 10px;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .filter-button {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: #fff !important;
+      background-color: var(--filter-button-color) !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+      padding: 6px 8px;
+      transition: background-color 0.3s;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-radius: 5px;
+      opacity: 0.3;
+    }
+
+    .filter-button.grey {
+      background-color: var(--filter-button-color-inactive) !important;
+    }
+
+    .filter-button.green {
+      background-color: var(--filter-button-color-active) !important;
+      opacity: 1;
+    }
+
+    .filter-button i {
+      margin-left: 5px;
+    }
+
+    .filter-button .material-icons {
+      vertical-align: middle;
+    }
+
+    header,
+    footer.page-footer {
+      background-color: var(--header-footer-color) !important;
+    }
+
+    .brand-logo {
+      color: #fff !important;
+    }
+
+    .page-footer {
+      background-color: var(--header-footer-color) !important;
+      color: #aaa !important;
+      padding: 20px 0;
+    }
+
+    .page-footer a {
+      color: var(--header-footer-color) !important;
+    }
+
+    .container {
+      padding-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center" style="color: #fff;">Themis: Fair Cryptocurrency Distribution</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="filter-container">
+      <div class="filter-category">
+        <p class="filter-title" style="color: #fff;">Consensus:</p>
+        <div class="filter-buttons" id="consensus-buttons">
+          <a class="waves-effect waves-light btn-small filter-button" data-label="PoW">
+            <i class="material-icons left">check</i>PoW
+          </a>
+          <a class="waves-effect waves-light btn-small filter-button" data-label="PoS">
+            <i class="material-icons left">check</i>PoS
+          </a>
+          <a class="waves-effect waves-light btn-small filter-button" data-label="Other">
+            <i class="material-icons left">check</i>Other
+          </a>
+        </div>
+      </div>
+      <div class="filter-category">
+        <p class="filter-title" style="color: #fff;">Platform:</p>
+        <div class="filter-buttons" id="platform-buttons">
+          <a class="waves-effect waves-light btn-small filter-button" data-label="Layer 1">
+            <i class="material-icons left">check</i>Layer 1
+          </a>
+          <a class="waves-effect waves-light btn-small filter-button" data-label="ERC-20">
+            <i class="material-icons left">check</i>ERC-20
+          </a>
+          <a class="waves-effect waves-light btn-small filter-button" data-label="BTC-Fork">
+            <i class="material-icons left">check</i>BTC-Fork
+          </a>
+        </div>
+      </div>
+      <div class="filter-category">
+        <p class="filter-title" style="color: #fff;">Features:</p>
+        <div class="filter-buttons" id="features-buttons">
+          <a class="waves-effect waves-light btn-small filter-button" data-label="Smart Contracts">
+            <i class="material-icons left">check</i>Smart Contracts
+          </a>
+          <a class="waves-effect waves-light btn-small filter-button" data-label="Privacy Coin">
+            <i class="material-icons left">check</i>Privacy Coin
+          </a>
+          <a class="waves-effect waves-light btn-small filter-button" data-label="Privacy Features">
+            <i class="material-icons left">check</i>Privacy Features
+          </a>
+          <a class="waves-effect waves-light btn-small filter-button" data-label="Tokens">
+            <i class="material-icons left">check</i>Tokens
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="charts-container" id="charts-container"></div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="center-align">
+        <a href="https://github.com/glasgowm148/Themis/info/name.md" class="waves-effect waves-light btn" target="_blank"
+          style="color: #bf77e5; background-color: #fff;">
+          <i class="material-icons left">cloud</i>Contribute on GitHub
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    fetch('data.json')
+      .then(response => response.json())
+      .then(chartData => {
+        const consensusButtonsContainer = document.getElementById('consensus-buttons');
+        const platformButtonsContainer = document.getElementById('platform-buttons');
+        const featuresButtonsContainer = document.getElementById('features-buttons');
+        const chartsContainer = document.getElementById('charts-container');
+
+        const colors = [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 159, 64, 0.6)',
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)'
+        ];
+
+        const consensusTags = new Set();
+        const platformTags = new Set();
+        const featuresTags = new Set();
+
+        chartData.forEach(chart => {
+          if (chart.tags) {
+            chart.tags.forEach(tag => {
+              if (tag.startsWith('Consensus:')) {
+                consensusTags.add(tag.replace('Consensus:', ''));
+              } else if (tag.startsWith('Platform:')) {
+                platformTags.add(tag.replace('Platform:', ''));
+              } else if (tag.startsWith('Features:')) {
+                featuresTags.add(tag.replace('Features:', ''));
+              }
+            });
+          }
+        });
+
+        const createFilterButtons = (container, tags) => {
+          tags.forEach(tag => {
+            const button = document.createElement('a');
+            button.classList.add('waves-effect', 'waves-light', 'btn-small', 'filter-button');
+            button.innerHTML = `<i class="material-icons left">check</i>${tag}`;
+            button.dataset.label = tag;
+            container.appendChild(button);
+          });
+        };
+
+        createFilterButtons(consensusButtonsContainer, consensusTags);
+        createFilterButtons(platformButtonsContainer, platformTags);
+        createFilterButtons(featuresButtonsContainer, featuresTags);
+
+        const filterCharts = () => {
+          const activeFilters = Array.from(document.querySelectorAll('.filter-button.green'))
+            .map(button => button.dataset.label);
+
+          const filteredCharts = chartData.filter(chart => {
+            if (!chart.tags) {
+              return false;
+            }
+            return activeFilters.every(tag => chart.tags.includes(tag));
+          });
+
+          chartsContainer.innerHTML = '';
+
+          filteredCharts.forEach((chart, i) => {
+            const chartContainer = document.createElement('div');
+            chartContainer.classList.add('chart-container');
+            chartsContainer.appendChild(chartContainer);
+
+            const card = document.createElement('div');
+            card.classList.add('card');
+            chartContainer.appendChild(card);
+
+            const chartContent = document.createElement('div');
+            chartContent.classList.add('card-content', 'chart-container');
+            card.appendChild(chartContent);
+
+            const canvas = document.createElement('canvas');
+            canvas.id = 'chart' + i;
+            chartContent.appendChild(canvas);
+
+            const ctx = canvas.getContext('2d');
+            const myChart = new Chart(ctx, {
+              type: 'pie',
+              data: {
+                labels: chart.labels,
+                datasets: [{
+                  label: chart.name,
+                  data: chart.data,
+                  backgroundColor: colors.slice(0, chart.data.length),
+                  borderColor: colors.slice(0, chart.data.length),
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    display: false
+                  },
+                  title: {
+                    display: true,
+                    text: chart.name
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: function (context) {
+                        var index = context.dataIndex;
+                        var value = context.dataset.data[index];
+                        return value + '%';
+                      }
+                    }
+                  }
+                }
+              }
+            });
+
+            const chartText = document.createElement('p');
+            chartText.classList.add('chart-text');
+            chartText.textContent = chart.text;
+            chartContainer.appendChild(chartText);
+
+            const readMore = document.createElement('a');
+            readMore.classList.add('read-more');
+            readMore.href = `https://github.com/glasgowm148/Themis/info/${chart.name}.md`;
+            readMore.target = '_blank';
+            readMore.innerHTML = `Read More <i class="material-icons right">arrow_forward</i>`;
+            chartContainer.appendChild(readMore);
+          });
+        };
+
+        const filterButtons = document.querySelectorAll('.filter-button');
+
+        filterButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            button.classList.toggle('grey');
+            button.classList.toggle('green');
+            const icon = button.querySelector('i');
+            icon.innerText = (icon.innerText === 'check') ? 'clear' : 'check';
+            filterCharts();
+          });
+        });
+
+        filterCharts();
+      });
+  </script>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

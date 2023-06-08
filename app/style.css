@@ -1,0 +1,126 @@
+:root {
+    --primary-color: #230c26;
+    --secondary-color: #3c3b4d;
+    --filter-button-color: #b0b2c9;
+    --filter-button-color-active: #13943c;
+    --filter-button-color-inactive: #777;
+    --header-footer-color: var(--primary-color);
+  }
+
+  body {
+    background-color: #2a2837 !important;
+    color: #fff !important;
+    font-family: Arial, sans-serif;
+  }
+
+  nav {
+    background-color: #230c26 !important;
+  }
+
+  .charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .chart-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--secondary-color) !important;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .chart-container canvas {
+    max-width: 100%;
+  }
+
+  .chart-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .chart-logo {
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+  }
+
+  .filter-container {
+    padding: 20px;
+    background-color: #484769;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .filter-category {
+    margin-bottom: 10px;
+  }
+
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .filter-button {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #fff !important;
+    background-color: var(--filter-button-color) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+    padding: 6px 8px;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    opacity: 0.3;
+  }
+
+  .filter-button.grey {
+    background-color: var(--filter-button-color-inactive) !important;
+  }
+
+  .filter-button.green {
+    background-color: var(--filter-button-color-active) !important;
+    opacity: 1;
+  }
+
+  .filter-button i {
+    margin-left: 5px;
+  }
+
+  .filter-button .material-icons {
+    vertical-align: middle;
+  }
+
+  header,
+  footer.page-footer {
+    background-color: var(--header-footer-color) !important;
+  }
+
+  .brand-logo {
+    color: #fff !important;
+  }
+
+  .page-footer {
+    background-color: var(--header-footer-color) !important;
+    color: #aaa !important;
+    padding: 20px 0;
+  }
+
+  .page-footer a {
+    color: var(--header-footer-color) !important;
+  }
+
+  .container {
+    padding-top: 20px;
+  }
