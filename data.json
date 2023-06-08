@@ -73,7 +73,7 @@
         "name": "ZEC",
         "labels": ["Community", "Zcash Foundation"],
         "data": [90, 10],
-        "tags": ["Privacy Coin", "Layer 1"],
+        "tags": ["Privacy Coin", "Layer 1", "BTC-Fork"],
         "community": {
             "Public": 90,
             "Insiders": 10
@@ -83,7 +83,7 @@
         "name": "CRO",
         "labels": ["Community", "Crypto.com"],
         "data": [85, 15],
-        "tags": ["Other"],
+        "tags": ["Other", "Cosmos"],
         "community": {
             "Public": 85,
             "Insiders": 15
@@ -143,7 +143,7 @@
         "name": "BSC",
         "labels": ["Community", "Binance"],
         "data": [50, 50],
-        "tags": ["Smart Contracts", "Layer 1"],
+        "tags": ["Smart Contracts", "Layer 1", "ETH"],
         "community": {
             "Public": 50,
             "Insiders": 50
@@ -203,7 +203,7 @@
         "name": "MATIC",
         "labels": ["Community", "Polygon Foundation"],
         "data": [40, 60],
-        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "tags": ["PoS", "Smart Contracts", "Layer 2"],
         "community": {
             "Public": 40,
             "Insiders": 60
@@ -213,7 +213,7 @@
         "name": "LUNA",
         "labels": ["Community", "Insiders"],
         "data": [0, 100],
-        "tags": ["PoS", "Smart Contracts", "Layer 1"],
+        "tags": ["PoS", "Smart Contracts", "Cosmos"],
         "community": {
             "Public": 0,
             "Insiders": 100

@@ -139,10 +139,24 @@
       padding-top: 20px;
     }
 
-    .toggle-button-container {
+    .toggle-container {
       display: flex;
       justify-content: center;
+      align-items: center;
+      padding: 10px;
       margin-bottom: 20px;
+      background-color: #484769;
+      border-radius: 5px;
+    }
+
+    .toggle-container h6 {
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    .toggle-buttons {
+      display: flex;
+      gap: 10px;
     }
 
     .toggle-button {
@@ -177,6 +191,33 @@
     .toggle-button .material-icons {
       vertical-align: middle;
     }
+
+    /* Custom Styles */
+
+    .filter-title {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    }
+
+    .filter-category:before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 10px;
+    }
+
+    .toggle-container h6 {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-right: 10px;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 
@@ -184,34 +225,16 @@
   <header>
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo center" style="color: #fff;">Themis: Fair Cryptocurrency Distribution</a>
+        <a href="#" class="brand-logo center" style="color: #fff; font-family: 'Arial Black', Arial, sans-serif; font-size: 22px; text-transform: uppercase; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">Who's the fairest of them all?</a>
+
       </div>
     </nav>
   </header>
 
   <div class="container">
-    <div class="toggle-button-container">
-      <a class="waves-effect waves-light btn-small toggle-button grey" id="toggle-button">
-        <i class="material-icons left">data_usage</i>Data
-      </a>
-    </div>
     <div class="filter-container">
       <div class="filter-category">
-        <p class="filter-title" style="color: #fff;">Consensus:</p>
-        <div class="filter-buttons" id="consensus-buttons">
-          <a class="waves-effect waves-light btn-small filter-button" data-label="PoW">
-            <i class="material-icons left">check</i>PoW
-          </a>
-          <a class="waves-effect waves-light btn-small filter-button" data-label="PoS">
-            <i class="material-icons left">check</i>PoS
-          </a>
-          <a class="waves-effect waves-light btn-small filter-button" data-label="Other">
-            <i class="material-icons left">check</i>Other
-          </a>
-        </div>
-      </div>
-      <div class="filter-category">
-        <p class="filter-title" style="color: #fff;">Platform:</p>
+        <p class="filter-title" style="color: #fff;">Platform</p>
         <div class="filter-buttons" id="platform-buttons">
           <a class="waves-effect waves-light btn-small filter-button" data-label="Layer 1">
             <i class="material-icons left">check</i>Layer 1
@@ -225,7 +248,7 @@
         </div>
       </div>
       <div class="filter-category">
-        <p class="filter-title" style="color: #fff;">Features:</p>
+        <p class="filter-title" style="color: #fff;">Features</p>
         <div class="filter-buttons" id="features-buttons">
           <a class="waves-effect waves-light btn-small filter-button" data-label="Smart Contracts">
             <i class="material-icons left">check</i>Smart Contracts
@@ -242,6 +265,19 @@
         </div>
       </div>
     </div>
+
+    <div class="toggle-container">
+      <h6 style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">Data Split</h6>
+      <div class="toggle-buttons">
+        <a class="waves-effect waves-light btn-small toggle-button grey" id="community-toggle-button">
+          <i class="material-icons left">people</i>Community
+        </a>
+        <a class="waves-effect waves-light btn-small toggle-button" id="breakdown-toggle-button">
+          <i class="material-icons left">pie_chart</i>Breakdown
+        </a>
+      </div>
+    </div>
+
     <div class="charts-container" id="charts-container"></div>
   </div>
 
@@ -260,7 +296,8 @@
     fetch('data.json')
       .then(response => response.json())
       .then(chartData => {
-        const toggleButton = document.getElementById('toggle-button');
+        const communityToggleButton = document.getElementById('community-toggle-button');
+        const breakdownToggleButton = document.getElementById('breakdown-toggle-button');
         const chartsContainer = document.getElementById('charts-container');
 
         const colors = [
@@ -275,9 +312,11 @@
           'rgba(255, 206, 86, 0.6)'
         ];
 
-        let useCommunityData = false;
+        let useBreakdownData = false;
 
         const createFilterButtons = (container, tags) => {
+          container.innerHTML = ''; // Clear the container before creating filter buttons
+
           tags.forEach(tag => {
             const button = document.createElement('a');
             button.classList.add('waves-effect', 'waves-light', 'btn-small', 'filter-button');
@@ -286,6 +325,14 @@
             container.appendChild(button);
           });
         };
+
+        const platformButtons = document.getElementById('platform-buttons');
+        const featuresButtons = document.getElementById('features-buttons');
+
+        createFilterButtons(platformButtons, ['Layer 1', 'ERC-20', 'BTC-Fork']);
+        createFilterButtons(featuresButtons, ['Smart Contracts', 'Privacy Coin', 'Privacy Features', 'Tokens']);
+
+
 
         const filterCharts = () => {
           const activeFilters = Array.from(document.querySelectorAll('.filter-button.green'))
@@ -318,8 +365,7 @@
             chartContent.appendChild(canvas);
 
             const ctx = canvas.getContext('2d');
-            const chartData = useCommunityData ? Object.values(chart.community) : chart.data;
-
+            const chartData = useBreakdownData ? Object.values(chart.data) : Object.values(chart.community);
 
             const myChart = new Chart(ctx, {
               type: 'pie',
@@ -382,18 +428,41 @@
           });
         });
 
-        toggleButton.addEventListener('click', () => {
-          useCommunityData = !useCommunityData;
-          toggleButton.innerHTML = `<i class="material-icons left">${useCommunityData ? 'data_usage' : 'people'}</i>${useCommunityData ? 'Data' : 'Community'}`;
+        breakdownToggleButton.addEventListener('click', () => {
+          useBreakdownData = !useBreakdownData;
+          breakdownToggleButton.classList.toggle('grey');
+          breakdownToggleButton.classList.toggle('green');
+          breakdownToggleButton.classList.remove('grey');
+          breakdownToggleButton.classList.add('green');
+          communityToggleButton.classList.remove('green');
+          communityToggleButton.classList.add('grey');
           filterCharts();
         });
 
-        createFilterButtons(document.getElementById('consensus-buttons'), ['PoW', 'PoS', 'Other']);
-        createFilterButtons(document.getElementById('platform-buttons'), ['Layer 1', 'ERC-20', 'BTC-Fork']);
-        createFilterButtons(document.getElementById('features-buttons'), ['Smart Contracts', 'Privacy Coin', 'Privacy Features', 'Tokens']);
+        communityToggleButton.addEventListener('click', () => {
+          useBreakdownData = false;
+          breakdownToggleButton.classList.remove('green');
+          breakdownToggleButton.classList.add('grey');
+          communityToggleButton.classList.remove('grey');
+          communityToggleButton.classList.add('green');
+          filterCharts();
+        });
 
+        breakdownToggleButton.addEventListener('click', () => {
+          useBreakdownData = true;
+          breakdownToggleButton.classList.remove('grey');
+          breakdownToggleButton.classList.add('green');
+          communityToggleButton.classList.remove('green');
+          communityToggleButton.classList.add('grey');
+          filterCharts();
+        });
+
+
+        communityToggleButton.classList.add('green');
+        breakdownToggleButton.classList.add('grey');
         filterCharts();
       });
+
 
   </script>
 
