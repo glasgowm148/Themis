@@ -1,14 +1,24 @@
 [
     {
         "name": "BTC",
-        "labels": ["Public", "Satoshi"],
-        "data": [95, 5],
-        "tags": ["PoW", "Layer 1", "Privacy Features"],
+        "labels": [
+            "Public",
+            "Satoshi"
+        ],
+        "data": [
+            95,
+            5
+        ],
+        "tags": [
+            "PoW",
+            "Layer 1",
+            "Privacy Features"
+        ],
         "community": {
-          "Public": 100,
-          "Insiders": 0
+            "Public": 100,
+            "Insiders": 0
         }
-      },
+    },
     {
         "name": "RVN",
         "labels": [
@@ -20,7 +30,7 @@
         "tags": [
             "PoW",
             "BTC-Fork",
-            "Tokens"
+            "Token Primitivies"
         ],
         "community": {
             "Public": 100,
@@ -74,7 +84,7 @@
         "tags": [
             "PoW",
             "BTC-Fork",
-            "Tokens",
+            "Token Primitivies",
             "Layer 1"
         ],
         "community": {
@@ -97,7 +107,7 @@
             "Smart Contracts",
             "Layer 1",
             "Privacy Features",
-            "Tokens"
+            "Token Primitivies"
         ],
         "community": {
             "Public": 95.57,
@@ -177,7 +187,7 @@
             "PoS",
             "Smart Contracts",
             "Layer 1",
-            "Tokens"
+            "Token Primitivies"
         ],
         "community": {
             "Public": 88.5,
@@ -335,10 +345,32 @@
     {
         "name": "AVAX",
         "labels": [
-            "Community"
+            "Staking Reward",
+            "Team",
+            "Public Sale Option A1",
+            "Public Sale Option A2",
+            "Public Sale Option B",
+            "Foundation",
+            "Community & Developer Endowment",
+            "Strategic Partners",
+            "Private Sale",
+            "Seed Sale",
+            "Airdrop",
+            "Testnet Incentive Program"
         ],
         "data": [
-            39
+            50.00,
+            10.00,
+            1.00,
+            8.30,
+            0.67,
+            9.26,
+            7.00,
+            5.00,
+            3.50,
+            2.50,
+            2.50,
+            0.27
         ],
         "tags": [
             "PoS",
@@ -422,26 +454,6 @@
         "community": {
             "Public": 31.00,
             "Insiders": 69.00
-        }
-    },
-    {
-        "name": "LUNA",
-        "labels": [
-            "Community",
-            "Insiders"
-        ],
-        "data": [
-            0,
-            100
-        ],
-        "tags": [
-            "PoS",
-            "Smart Contracts",
-            "Cosmos"
-        ],
-        "community": {
-            "Public": 0,
-            "Insiders": 100
         }
     },
     {

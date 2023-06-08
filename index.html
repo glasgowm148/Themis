@@ -56,11 +56,12 @@
       }
 
       .chart-title {
-        font-size: 18px;
+        font-size: 24px;
         font-weight: bold;
         margin-bottom: 10px;
         text-align: center;
       }
+
 
       .chart-logo {
         width: 20px;
@@ -235,34 +236,20 @@
 
     <div class="container">
       <div class="filter-container">
-        <div class="filter-category">
+          <div class="filter-category">
+            <p class="filter-title" style="color: #fff;">Consensus</p>
+            <div class="filter-buttons" id="consensus-buttons">
+             
+            </div>
           <p class="filter-title" style="color: #fff;">Platform</p>
           <div class="filter-buttons" id="platform-buttons">
-            <a class="waves-effect waves-light btn-small filter-button" data-label="Layer 1">
-              <i class="material-icons left">check</i>Layer 1
-            </a>
-            <a class="waves-effect waves-light btn-small filter-button" data-label="ERC-20">
-              <i class="material-icons left">check</i>ERC-20
-            </a>
-            <a class="waves-effect waves-light btn-small filter-button" data-label="BTC-Fork">
-              <i class="material-icons left">check</i>BTC-Fork
-            </a>
+           
           </div>
         </div>
         <div class="filter-category">
           <p class="filter-title" style="color: #fff;">Features</p>
           <div class="filter-buttons" id="features-buttons">
-            <a class="waves-effect waves-light btn-small filter-button" data-label="Smart Contracts">
-              <i class="material-icons left">check</i>Smart Contracts
-            </a>
-            <a class="waves-effect waves-light btn-small filter-button" data-label="Privacy Coin">
-              <i class="material-icons left">check</i>Privacy Coin
-            </a>
-            <a class="waves-effect waves-light btn-small filter-button" data-label="Privacy Features">
-              <i class="material-icons left">check</i>Privacy Features
-            </a>
-            <a class="waves-effect waves-light btn-small filter-button" data-label="Tokens">
-              <i class="material-icons left">check</i>Tokens
+           
             </a>
           </div>
         </div>
@@ -303,8 +290,8 @@
           const chartsContainer = document.getElementById('charts-container');
 
           const colors = [
-            'rgba(255, 99, 132, 0.6)',
             'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 99, 132, 0.6)',
             'rgba(255, 206, 86, 0.6)',
             'rgba(75, 192, 192, 0.6)',
             'rgba(153, 102, 255, 0.6)',
@@ -328,11 +315,13 @@
             });
           };
 
+          const consensusButtons = document.getElementById('consensus-buttons');
           const platformButtons = document.getElementById('platform-buttons');
           const featuresButtons = document.getElementById('features-buttons');
 
-          createFilterButtons(platformButtons, ['Layer 1', 'ERC-20', 'BTC-Fork']);
-          createFilterButtons(featuresButtons, ['Smart Contracts', 'Privacy Coin', 'Privacy Features', 'Tokens']);
+          createFilterButtons(consensusButtons, ['PoW', 'PoS']);
+          createFilterButtons(platformButtons, ['Layer 1', 'ERC-20', 'BTC-Fork', 'Cosmos', 'Layer 2']);
+          createFilterButtons(featuresButtons, ['Smart Contracts', 'Privacy Coin', 'Privacy Features', 'Token Primitivies']);
 
           const filterCharts = () => {
             const activeFilters = Array.from(document.querySelectorAll('.filter-button.green'))
@@ -474,4 +463,4 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 
-  </html>>
+  </html>
