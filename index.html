@@ -297,37 +297,7 @@
             'rgba(255, 206, 86, 0.6)'
           ];
 
-          
-
-          const addCoingeckoLogo = (coinName, chartContainer) => {
-            const coingeckoLink = `https://www.coingecko.com/en/coins/${coinName}/tokenomics`;
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', coingeckoLink);
-            xhr.onreadystatechange = function () {
-              if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                  const coingeckoLogo = document.createElement('img');
-                  coingeckoLogo.classList.add('chart-logo');
-                  coingeckoLogo.src = 'https://coingecko.com/favicon.ico';
-
-                  const coingeckoLinkElement = document.createElement('a');
-                  coingeckoLinkElement.href = coingeckoLink;
-                  coingeckoLinkElement.target = '_blank';
-                  coingeckoLinkElement.appendChild(coingeckoLogo);
-
-                  chartContainer.appendChild(coingeckoLinkElement);
-                } else if (xhr.status !== 404) {
-                  console.error(`Coingecko request failed for ${coinName}: ${xhr.status} ${xhr.statusText}`);
-                  addFrogIcon(chartContainer);
-                }
-              }
-            };
-            xhr.onerror = function () {
-              console.error(`Coingecko request failed for ${coinName}`);
-              addFrogIcon(chartContainer);
-            };
-            xhr.send();
-          };
+      
 
           let useBreakdownData = false;
 
@@ -426,7 +396,6 @@
                   }
                 }
               });
-              addCoingeckoLogo(chart.name, chartContainer);
               const chartText = document.createElement('p');
               chartText.classList.add('chart-text');
               chartText.textContent = chart.text;
