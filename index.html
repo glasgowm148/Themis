@@ -204,14 +204,7 @@
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
       }
 
-      .filter-category:before {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 1px;
-        background-color: rgba(255, 255, 255, 0.3);
-        margin-bottom: 10px;
-      }
+
 
       .toggle-container h6 {
         font-family: 'Arial Black', Arial, sans-serif;
@@ -236,20 +229,20 @@
 
     <div class="container">
       <div class="filter-container">
-          <div class="filter-category">
-            <p class="filter-title" style="color: #fff;">Consensus</p>
-            <div class="filter-buttons" id="consensus-buttons">
-             
-            </div>
+        <div class="filter-category">
+          <p class="filter-title" style="color: #fff;">Consensus</p>
+          <div class="filter-buttons" id="consensus-buttons">
+
+          </div>
           <p class="filter-title" style="color: #fff;">Platform</p>
           <div class="filter-buttons" id="platform-buttons">
-           
+
           </div>
         </div>
         <div class="filter-category">
           <p class="filter-title" style="color: #fff;">Features</p>
           <div class="filter-buttons" id="features-buttons">
-           
+
             </a>
           </div>
         </div>
@@ -301,6 +294,38 @@
             'rgba(255, 206, 86, 0.6)'
           ];
 
+          
+
+          const addCoingeckoLogo = (coinName, chartContainer) => {
+            const coingeckoLink = `https://www.coingecko.com/en/coins/${coinName}/tokenomics`;
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', coingeckoLink);
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                  const coingeckoLogo = document.createElement('img');
+                  coingeckoLogo.classList.add('chart-logo');
+                  coingeckoLogo.src = 'https://coingecko.com/favicon.ico';
+
+                  const coingeckoLinkElement = document.createElement('a');
+                  coingeckoLinkElement.href = coingeckoLink;
+                  coingeckoLinkElement.target = '_blank';
+                  coingeckoLinkElement.appendChild(coingeckoLogo);
+
+                  chartContainer.appendChild(coingeckoLinkElement);
+                } else if (xhr.status !== 404) {
+                  console.error(`Coingecko request failed for ${coinName}: ${xhr.status} ${xhr.statusText}`);
+                  addFrogIcon(chartContainer);
+                }
+              }
+            };
+            xhr.onerror = function () {
+              console.error(`Coingecko request failed for ${coinName}`);
+              addFrogIcon(chartContainer);
+            };
+            xhr.send();
+          };
+
           let useBreakdownData = false;
 
           const createFilterButtons = (container, tags) => {
@@ -343,6 +368,7 @@
             chartsContainer.innerHTML = '';
 
             filteredCharts.forEach((chart, i) => {
+
               const chartContainer = document.createElement('div');
               chartContainer.classList.add('chart-container');
               chartsContainer.appendChild(chartContainer);
@@ -354,6 +380,7 @@
               const chartContent = document.createElement('div');
               chartContent.classList.add('card-content', 'chart-container');
               card.appendChild(chartContent);
+
 
               const canvas = document.createElement('canvas');
               canvas.id = 'chart' + i;
@@ -396,7 +423,7 @@
                   }
                 }
               });
-
+              addCoingeckoLogo(chart.name, chartContainer);
               const chartText = document.createElement('p');
               chartText.classList.add('chart-text');
               chartText.textContent = chart.text;
